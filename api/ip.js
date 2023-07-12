@@ -7,7 +7,7 @@ module.exports = (req, res) => {
         <title>Funny Site</title>
         <style>
           body {
-            background: url('https://media.tenor.com/g1bZgt4-tL4AAAAC/skull.gif') repeat;
+            background: url('./skull.gif') repeat;
           }
 
           #overlay {

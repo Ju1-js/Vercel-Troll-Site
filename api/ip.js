@@ -4,7 +4,7 @@ module.exports = (req, res) => {
     <!DOCTYPE html>
     <html>
       <head>
-        <title>Funny Site</title>
+        <title>Calculator</title>
         <style>
           body {
             background: url('../img/skull.gif') repeat;

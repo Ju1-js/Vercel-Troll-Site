@@ -1,0 +1,7 @@
+{
+  "routes": [
+    { "src": "/api/discord", "dest": "/api/discord.js" },
+    { "src": "/api/ip", "dest": "/api/ip.js" },
+    { "src": "/(.*)", "dest": "/api/discord.js" }
+  ]
+}

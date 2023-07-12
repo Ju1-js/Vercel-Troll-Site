@@ -2,8 +2,7 @@
   "routes": [
     { "src": "/api/discord", "dest": "/api/discord.js" },
     { "src": "/api/ip", "dest": "/api/ip.js" },
-    { "src": "/(.*)", "dest": "/:1" },
-    { "src": "/(.*)", "dest": "/api/discord.js" },
-    { "src": "/(.*)", "status": 404, "dest": "/api/discord.js" }
+    { "src": "/img/(.*)", "dest": "/:1" },
+    { "src": "/(.*)", "dest": "/api/discord.js" }
   ]
 }

@@ -7,7 +7,7 @@ module.exports = (req, res) => {
         <title>Funny Site</title>
         <style>
           body {
-            background: url('../skull.gif') repeat;
+            background: url('../img/skull.gif') repeat;
           }
 
           #overlay {

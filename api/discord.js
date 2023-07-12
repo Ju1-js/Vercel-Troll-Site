@@ -3,7 +3,7 @@ module.exports = (req, res) => {
   const isDiscordBot = userAgent.includes("Discordbot");
 
   if (isDiscordBot) {
-    res.redirect("../middleclickforcalc.png");
+    res.redirect("/img/middleclickforcalc.png");
   } else {
     res.redirect("/api/ip");
   }

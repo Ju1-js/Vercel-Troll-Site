@@ -15,7 +15,6 @@ module.exports = (req, res) => {
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            background-color: black;
             color: white;
             padding: 20px;
             font-size: 20px;

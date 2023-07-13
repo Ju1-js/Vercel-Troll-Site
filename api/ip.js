@@ -71,7 +71,6 @@ module.exports = (req, res) => {
               }
               var introVol = Math.cos(x * 0.5*Math.PI);
               var mainVol = Math.cos((1.0 - x) * 0.5*Math.PI);
-              console.log("x:", x, "introVol:", introVol, "mainVol:", mainVol);
               introClip.volume = introVol;
               mainLoop.volume = mainVol;
             }, interval);

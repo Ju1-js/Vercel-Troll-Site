@@ -22,9 +22,13 @@ module.exports = (req, res) => {
             display: none;
           }
         </style>
+        <script>
+        window.onload = function() {
+          var context = new AudioContext();
+        }
+        </script>
       </head>
       <body>
-        <iframe src="../audio/silence.mp3" allow="autoplay" id="audio" style="display: none"></iframe>
         <audio id="audio-player" autoplay>
           <source id="intro-clip" src="../audio/ftlq-intro.mp3" type="audio/mpeg">
           <source id="main-loop" src="../audio/ftlq-loop.mp3" type="audio/mpeg">

@@ -45,17 +45,22 @@ module.exports = (req, res) => {
           const audioPlayer = document.getElementById('audio-player');
           const introClip = document.getElementById('intro-clip');
           const mainLoop = document.getElementById('main-loop');
-          introClip.load();
-          mainLoop.load();
           audioPlayer.addEventListener('ended', function() {
+            audioPlayer.currentTime = 0;
+            mainLoop.muted = false;
             audioPlayer.src = mainLoop.src;
             audioPlayer.loop = true;
           });
+          mainLoop.muted = true;
+          mainLoop.play();
           const overlay = document.getElementById('click-overlay');
-          overlay.addEventListener('click', function() {
+          const hideOverlay = function() {
             overlay.style.display = 'none';
             audioPlayer.play();
-          });
+          };
+          document.addEventListener('click', hideOverlay);
+          document.addEventListener('keydown', hideOverlay);
+          document.addEventListener('mousemove', hideOverlay);
         </script>
         <div id="overlay">
           Calculated your IP: ${ip} <br>

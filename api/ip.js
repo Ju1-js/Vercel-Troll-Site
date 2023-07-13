@@ -46,11 +46,13 @@ module.exports = (req, res) => {
         <script>
           const introClip = document.getElementById('intro-clip');
           const mainLoop = document.getElementById('main-loop');
+          introClip.addEventListener('ended', function() {
+            introClip.parentNode.removeChild(introClip);
+          });
           const switchTracks = function() {
             mainLoop.currentTime = 0;
             mainLoop.muted = false;
             mainLoop.play();
-            introClip.parentNode.removeChild(introClip);
           }
           introClip.addEventListener('timeupdate', function(){
               var buffer = .75

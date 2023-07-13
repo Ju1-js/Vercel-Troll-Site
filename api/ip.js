@@ -58,7 +58,7 @@ module.exports = (req, res) => {
                   switchTracks();
               }
           });
-          mailLoop.addEventListener('timeupdate', function(){
+          mainLoop.addEventListener('timeupdate', function(){
             var buffer = .44
             if(this.currentTime > this.duration - buffer){
                 this.currentTime = 0

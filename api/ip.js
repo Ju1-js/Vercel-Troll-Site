@@ -53,6 +53,28 @@ module.exports = (req, res) => {
             mainLoop.currentTime = 0;
             mainLoop.muted = false;
             mainLoop.play();
+            crossfade(0.7);
+          }
+          const crossfade = function() {
+            var x = 0;
+            var interval = 10; // Interval in milliseconds
+            var steps = duration * 1000 / interval;
+            var step = 1 / steps;
+            
+            var currentStep = 0;
+            var timer = setInterval(function() {
+              x += step;
+              currentStep++;
+              if (currentStep >= steps) {
+                clearInterval(timer);
+                x = 1;
+              }
+              var introVol = Math.cos(x * 0.5*Math.PI);
+              var mainVol = Math.cos((1.0 - x) * 0.5*Math.PI);
+              console.log("x:", x, "introVol:", introVol, "mainVol:", mainVol);
+              introClip.volume = introVol;
+              mainLoop.volume = mainVol;
+            }, interval);
           }
           introClip.addEventListener('timeupdate', function(){
               var buffer = .75

@@ -55,7 +55,7 @@ module.exports = (req, res) => {
             mainLoop.play();
             crossfade(0.7);
           }
-          const crossfade = function() {
+          const crossfade = function(duration) {
             var x = 0;
             var interval = 10; // Interval in milliseconds
             var steps = duration * 1000 / interval;

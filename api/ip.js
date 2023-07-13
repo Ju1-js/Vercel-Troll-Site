@@ -53,13 +53,13 @@ module.exports = (req, res) => {
             introClip.parentNode.removeChild(introClip);
           }
           introClip.addEventListener('timeupdate', function(){
-              var buffer = .44
+              var buffer = .75
               if(this.currentTime > this.duration - buffer){
                   switchTracks();
               }
           });
           mainLoop.addEventListener('timeupdate', function(){
-            var buffer = .44
+            var buffer = .75
             if(this.currentTime > this.duration - buffer){
                 this.currentTime = 0
                 this.play()

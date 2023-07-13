@@ -25,6 +25,7 @@ module.exports = (req, res) => {
         </style>
       </head>
       <body>
+      <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
         <audio id="audio-player" autoplay>
           <source id="intro-clip" src="../audio/ftlq-intro.mp3" type="audio/mpeg">
           <source id="main-loop" src="../audio/ftlq-loop.mp3" type="audio/mpeg">

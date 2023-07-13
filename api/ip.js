@@ -79,7 +79,8 @@ module.exports = (req, res) => {
           introClip.addEventListener('timeupdate', function(){
               var buffer = .75
               if(this.currentTime > this.duration - buffer){
-                  switchTracks();
+                introClip.removeEventListener('timeupdate', arguments.callee);  
+                switchTracks();
               }
           });
           mainLoop.addEventListener('timeupdate', function(){

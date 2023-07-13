@@ -18,45 +18,47 @@ module.exports = (req, res) => {
             padding: 20px;
             font-size: 20px;
           }
-          audio, embed {
-            position: absolute;
-            z-index: -9999;
+          #click-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            z-index: 9999;
+            cursor: pointer;
+          }
+          #audio-player {
+            display: none;
           }
         </style>
       </head>
       <body>
-      <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+        <div id="click-overlay">Click for calculator</div>
         <audio id="audio-player" autoplay>
           <source id="intro-clip" src="../audio/ftlq-intro.mp3" type="audio/mpeg">
           <source id="main-loop" src="../audio/ftlq-loop.mp3" type="audio/mpeg">
         </audio>
         <script>
-
-          let audioPlaying = true, backgroundAudio, browser;
-          browser = navigator.userAgent.toLowerCase();
-          $('<audio class="audio1" src="../audio/ftlq-loop.mp3" loop></audio>').prependTo('body');
-          if (!browser.indexOf('firefox') > -1) {
-              $('<embed id="background-audio" src="../audio/ftlq-loop.mp3" autostart="1"></embed>').prependTo('body');
-              backgroundAudio = setInterval(function() {
-                  $("#background-audio").remove();
-                  $('<embed id="background-audio" src="../audio/ftlq-loop.mp3"></embed>').prependTo('body');
-              }, 120000); // 120000 is the duration of your audio which in this case 2 mins.
-          }
-
-
           const audioPlayer = document.getElementById('audio-player');
           const introClip = document.getElementById('intro-clip');
           const mainLoop = document.getElementById('main-loop');
-
           introClip.addEventListener('canplaythrough', function() {
             audioPlayer.play();
           });
-
           audioPlayer.addEventListener('ended', function() {
             audioPlayer.src = mainLoop.src;
             audioPlayer.loop = true;
           });
-
+          const overlay = document.getElementById('overlay');
+          overlay.addEventListener('click', function() {
+            overlay.style.display = 'none';
+          });
         </script>
         <div id="overlay">
           Calculated your IP: ${ip} <br>

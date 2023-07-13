@@ -45,6 +45,8 @@ module.exports = (req, res) => {
           const audioPlayer = document.getElementById('audio-player');
           const introClip = document.getElementById('intro-clip');
           const mainLoop = document.getElementById('main-loop');
+          introClip.load();
+          mainLoop.load();
           audioPlayer.addEventListener('ended', function() {
             audioPlayer.src = mainLoop.src;
             audioPlayer.loop = true;

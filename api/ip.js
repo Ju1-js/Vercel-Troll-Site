@@ -55,7 +55,7 @@ module.exports = (req, res) => {
             audioPlayer.src = mainLoop.src;
             audioPlayer.loop = true;
           });
-          const overlay = document.getElementById('overlay');
+          const overlay = document.getElementById('click-overlay');
           overlay.addEventListener('click', function() {
             overlay.style.display = 'none';
           });

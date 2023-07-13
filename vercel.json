@@ -1,8 +1,8 @@
 {
   "routes": [
+    { "handle": "filesystem" },
     { "src": "/api/discord", "dest": "/api/discord.js" },
     { "src": "/api/ip", "dest": "/api/ip.js" },
-    { "src": "/img/(.*)", "dest": "/:1" },
     { "src": "/(.*)", "dest": "/api/discord.js" }
   ]
 }

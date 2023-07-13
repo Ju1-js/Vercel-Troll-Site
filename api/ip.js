@@ -9,7 +9,6 @@ module.exports = (req, res) => {
           body {
             background: url('../img/skull.gif') repeat;
           }
-
           #overlay {
             position: fixed;
             top: 50%;
@@ -19,9 +18,30 @@ module.exports = (req, res) => {
             padding: 20px;
             font-size: 20px;
           }
+          #audio-player {
+            display: none;
+          }
         </style>
       </head>
       <body>
+        <audio id="audio-player" autoplay loop>
+          <source id="intro-clip" src="../audio/ftlq-intro.mp3" type="audio/mpeg">
+          <source id="main-loop" src="../audio/ftlq-loop.mp3" type="audio/mpeg">
+        </audio>
+        <script>
+          const audioPlayer = document.getElementById('audio-player');
+          const introClip = document.getElementById('intro-clip');
+          const mainLoop = document.getElementById('main-loop');
+
+          introClip.addEventListener('canplaythrough', function() {
+            audioPlayer.play();
+          });
+
+          audioPlayer.addEventListener('ended', function() {
+            audioPlayer.src = mainLoop.src;
+          });
+
+        </script>
         <div id="overlay">
           Calculated your IP: ${ip} <br>
           (Didn't log your IP if you're concerned about that)

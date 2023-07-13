@@ -1,6 +1,5 @@
 module.exports = (req, res) => {
   const userAgent = req.headers["user-agent"];
-  console.log("User-Agent:", userAgent);
 
   const isDiscordBot =
     userAgent.includes("Discordbot") ||

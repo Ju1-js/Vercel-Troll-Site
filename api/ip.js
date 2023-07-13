@@ -46,12 +46,18 @@ module.exports = (req, res) => {
         <script>
           const introClip = document.getElementById('intro-clip');
           const mainLoop = document.getElementById('main-loop');
-          introClip.addEventListener('ended', function() {
+          introClip.addEventListener('timeupdate', function(){
+              var buffer = .44
+              if(this.currentTime > this.duration - buffer){
+                  switchTracks();
+              }
+          });
+          const switchTracks = function() {
             introClip.parentNode.removeChild(introClip);
             mainLoop.currentTime = 0;
             mainLoop.muted = false;
             mainLoop.play();
-          });
+          }
           const overlay = document.getElementById('click-overlay');
           const hideOverlay = function() {
             document.removeEventListener('click', hideOverlay);

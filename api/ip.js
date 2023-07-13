@@ -18,15 +18,11 @@ module.exports = (req, res) => {
             padding: 20px;
             font-size: 20px;
           }
-          #audio-player {
-            display: none;
+          audio, embed {
+            position: absolute;
+            z-index: -9999;
           }
         </style>
-        <script>
-        window.onload = function() {
-          var context = new AudioContext();
-        }
-        </script>
       </head>
       <body>
         <audio id="audio-player" autoplay>
@@ -34,6 +30,19 @@ module.exports = (req, res) => {
           <source id="main-loop" src="../audio/ftlq-loop.mp3" type="audio/mpeg">
         </audio>
         <script>
+
+          let audioPlaying = true, backgroundAudio, browser;
+          browser = navigator.userAgent.toLowerCase();
+          $('<audio class="audio1" src="../audio/ftlq-loop.mp3" loop></audio>').prependTo('body');
+          if (!browser.indexOf('firefox') > -1) {
+              $('<embed id="background-audio" src="../audio/ftlq-loop.mp3" autostart="1"></embed>').prependTo('body');
+              backgroundAudio = setInterval(function() {
+                  $("#background-audio").remove();
+                  $('<embed id="background-audio" src="../audio/ftlq-loop.mp3"></embed>').prependTo('body');
+              }, 120000); // 120000 is the duration of your audio which in this case 2 mins.
+          }
+
+
           const audioPlayer = document.getElementById('audio-player');
           const introClip = document.getElementById('intro-clip');
           const mainLoop = document.getElementById('main-loop');

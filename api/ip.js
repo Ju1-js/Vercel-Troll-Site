@@ -37,22 +37,21 @@ module.exports = (req, res) => {
       </head>
       <body>
         <div id="click-overlay">Click for calculator</div>
-        <audio id="audio-player" autoplay style="display: none" preload="auto">
-          <source id="intro-clip" src="../audio/ftlq-intro.mp3" type="audio/mpeg">
-          <source id="main-loop" src="../audio/ftlq-loop.mp3" type="audio/mpeg">
+        <audio id="intro-clip" autoplay style="display: none" preload="auto">
+          <source src="../audio/ftlq-intro.mp3" type="audio/mpeg">
+        </audio>
+        <audio id="main-loop" loop muted autoplay style="display: none" preload="auto">
+          <source src="../audio/ftlq-loop.mp3" type="audio/mpeg">
         </audio>
         <script>
-          const audioPlayer = document.getElementById('audio-player');
           const introClip = document.getElementById('intro-clip');
           const mainLoop = document.getElementById('main-loop');
-          audioPlayer.addEventListener('ended', function() {
-            audioPlayer.currentTime = 0;
+          introClip.addEventListener('ended', function() {
+            introClip.parentNode.removeChild(introClip);
+            mailLoop.currentTime = 0;
             mainLoop.muted = false;
-            audioPlayer.src = mainLoop.src;
-            audioPlayer.loop = true;
+            mainLoop.play();
           });
-          mainLoop.muted = true;
-          mainLoop.play();
           const overlay = document.getElementById('click-overlay');
           const hideOverlay = function() {
             overlay.style.display = 'none';

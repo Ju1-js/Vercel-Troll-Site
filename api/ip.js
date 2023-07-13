@@ -55,7 +55,7 @@ module.exports = (req, res) => {
           const overlay = document.getElementById('click-overlay');
           const hideOverlay = function() {
             overlay.style.display = 'none';
-            audioPlayer.play();
+            introClip.play();
           };
           document.addEventListener('click', hideOverlay);
           document.addEventListener('keydown', hideOverlay);

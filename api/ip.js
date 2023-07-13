@@ -37,7 +37,7 @@ module.exports = (req, res) => {
       </head>
       <body>
         <div id="click-overlay">Click for calculator</div>
-        <audio id="audio-player" autoplay style="display: none">
+        <audio id="audio-player" autoplay style="display: none" preload="auto">
           <source id="intro-clip" src="../audio/ftlq-intro.mp3" type="audio/mpeg">
           <source id="main-loop" src="../audio/ftlq-loop.mp3" type="audio/mpeg">
         </audio>

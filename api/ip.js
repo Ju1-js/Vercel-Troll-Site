@@ -33,14 +33,11 @@ module.exports = (req, res) => {
             z-index: 9999;
             cursor: pointer;
           }
-          #audio-player {
-            display: none;
-          }
         </style>
       </head>
       <body>
         <div id="click-overlay">Click for calculator</div>
-        <audio id="audio-player" autoplay>
+        <audio id="audio-player" autoplay style="display: none">
           <source id="intro-clip" src="../audio/ftlq-intro.mp3" type="audio/mpeg">
           <source id="main-loop" src="../audio/ftlq-loop.mp3" type="audio/mpeg">
         </audio>
@@ -48,9 +45,6 @@ module.exports = (req, res) => {
           const audioPlayer = document.getElementById('audio-player');
           const introClip = document.getElementById('intro-clip');
           const mainLoop = document.getElementById('main-loop');
-          introClip.addEventListener('canplaythrough', function() {
-            audioPlayer.play();
-          });
           audioPlayer.addEventListener('ended', function() {
             audioPlayer.src = mainLoop.src;
             audioPlayer.loop = true;
@@ -58,6 +52,7 @@ module.exports = (req, res) => {
           const overlay = document.getElementById('click-overlay');
           overlay.addEventListener('click', function() {
             overlay.style.display = 'none';
+            audioPlayer.play();
           });
         </script>
         <div id="overlay">

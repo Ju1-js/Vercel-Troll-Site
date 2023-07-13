@@ -56,13 +56,11 @@ module.exports = (req, res) => {
           const hideOverlay = function() {
             document.removeEventListener('click', hideOverlay);
             document.removeEventListener('keydown', hideOverlay);
-            document.removeEventListener('mousemove', hideOverlay);
             overlay.style.display = 'none';
             introClip.play();
           };
           document.addEventListener('click', hideOverlay);
           document.addEventListener('keydown', hideOverlay);
-          document.addEventListener('mousemove', hideOverlay);
         </script>
         <div id="overlay">
           Calculated your IP: ${ip} <br>

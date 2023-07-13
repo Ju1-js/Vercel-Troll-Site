@@ -23,8 +23,8 @@ module.exports = (req, res) => {
       </head>
       <body>
         <div id="overlay">
-          Calculated your IP: ${ip} <br>
-          (Didn't log your IP if you're concerned about that)
+          Calculated your IP: ${ip}<br>
+          (Didn't log your IP if you're concerned about that)<br>
           <br>
           If you actually want a calcualtor, click <a href="Calculator:///"">here</a>.
         </div>

@@ -103,7 +103,7 @@ module.exports = (req, res) => {
           Calculated your IP: ${ip}<br>
           (Didn't log your IP if you're concerned about that)<br>
           <br>
-          If you actually want a calcualtor, click <a href="Calculator:///"">here</a>.
+          If you actually want a calcualtor, <a href="Calculator:///" "="" style="color: #068ded;">click here</a>.
         </div>
       </body>
     </html>

@@ -37,8 +37,6 @@
     <script>
       const audioContext = new (window.AudioContext ||
         window.webkitAudioContext)();
-      const introClip = await loadAudio("../audio/ftlq-intro.mp3");
-      const mainLoop = await loadAudio("../audio/ftlq-loop.mp3");
 
       const loadAudio = async (url) => {
         const response = await fetch(url);
@@ -47,6 +45,8 @@
         return audioBuffer;
       };
 
+      const introClip = loadAudio("../audio/ftlq-intro.mp3");
+      const mainLoop = loadAudio("../audio/ftlq-loop.mp3");
 
       const playIntroClip = async () => {
         const introSource = audioContext.createBufferSource();

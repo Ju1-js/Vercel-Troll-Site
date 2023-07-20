@@ -1,4 +1,5 @@
-import { promises as fs } from "fs";
+const fs = require("fs").promises;
+const path = require("path");
 module.exports = async (req, res) => {
   const ip = req.headers["x-real-ip"] || req.connection.remoteAddress;
   try {

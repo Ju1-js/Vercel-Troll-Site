@@ -6,8 +6,8 @@ module.exports = async (req, res) => {
       path.join(process.cwd(), "html", "ip.html"),
       "utf8"
     );
-    html = html.replace("${ip}", ip);
     const ip = req.headers["x-real-ip"] || req.connection.remoteAddress;
+    html = html.replace("${ip}", ip);
     res.setHeader("Content-Type", "text/html");
     res.status(200).send(html);
   } catch (e) {

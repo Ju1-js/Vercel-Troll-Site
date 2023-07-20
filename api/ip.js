@@ -44,51 +44,39 @@ module.exports = (req, res) => {
           <source src="../audio/ftlq-loop.mp3" type="audio/mpeg">
         </audio>
         <script>
-          const introClip = document.getElementById('intro-clip');
-          const mainLoop = document.getElementById('main-loop');
-          introClip.addEventListener('ended', function() {
-            introClip.parentNode.removeChild(introClip);
-          });
-          const switchTracks = function() {
-            mainLoop.currentTime = 0;
-            mainLoop.muted = false;
-            mainLoop.play();
-            crossfade(0.7);
-          }
-          const crossfade = function(duration) {
-            var x = 0;
-            var interval = 10; // Interval in milliseconds
-            var steps = duration * 1000 / interval;
-            var step = 1 / steps;
+          const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                  
+          const introClipURL = '../audio/ftlq-intro.mp3';
+          const mainLoopURL = '../audio/ftlq-loop.mp3';
+                  
+          const loadAudio = async (url) => {
+            const response = await fetch(url);
+            const arrayBuffer = await response.arrayBuffer();
+            const audioBuffer = await audioContext.decodeAudioData(arrayBuffer);
+            return audioBuffer;
+          };
+          
+          const playIntroClip = async () => {
+            const introClip = await loadAudio(introClipURL);
+            const introSource = audioContext.createBufferSource();
+            introSource.buffer = introClip;
+            introSource.connect(audioContext.destination);
             
-            var currentStep = 0;
-            var timer = setInterval(function() {
-              x += step;
-              currentStep++;
-              if (currentStep >= steps) {
-                clearInterval(timer);
-                x = 1;
-              }
-              var introVol = Math.cos(x * 0.5*Math.PI);
-              var mainVol = Math.cos((1.0 - x) * 0.5*Math.PI);
-              introClip.volume = introVol;
-              mainLoop.volume = mainVol;
-            }, interval);
-          }
-          introClip.addEventListener('timeupdate', function(){
-              var buffer = .75
-              if(this.currentTime > this.duration - buffer){
-                introClip.removeEventListener('timeupdate', arguments.callee);  
-                switchTracks();
-              }
-          });
-          mainLoop.addEventListener('timeupdate', function(){
-            var buffer = .75
-            if(this.currentTime > this.duration - buffer){
-                this.currentTime = 0
-                this.play()
-            }
-          });
+            const mainLoop = await loadAudio(mainLoopURL);
+            const mainSource = audioContext.createBufferSource();
+            mainSource.buffer = mainLoop;
+            mainSource.connect(audioContext.destination);
+            mainSource.loop = true;
+          
+            introSource.onended = () => {
+              mainSource.start(0);
+            };
+          
+            introSource.start(0);
+          };
+          
+          playIntroClip();
+
           const overlay = document.getElementById('click-overlay');
           const hideOverlay = function() {
             document.removeEventListener('click', hideOverlay);

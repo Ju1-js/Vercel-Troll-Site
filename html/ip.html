@@ -37,10 +37,10 @@
     <script>
       let firstLoad = true;
 
-      const loadAudio = async (url) => {
+      const loadAudio = async (url, _audioContext) => {
         const response = await fetch(url);
         const arrayBuffer = await response.arrayBuffer();
-        const audioBuffer = await audioContext.decodeAudioData(arrayBuffer);
+        const audioBuffer = await _audioContext.decodeAudioData(arrayBuffer);
         return audioBuffer;
       };
 
@@ -49,8 +49,14 @@
         firstLoad = false;
         const audioContext = new (window.AudioContext ||
           window.webkitAudioContext)();
-        const introClip = await loadAudio("../audio/ftlq-intro.mp3");
-        const mainLoop = await loadAudio("../audio/ftlq-loop.mp3");
+        const introClip = await loadAudio(
+          "../audio/ftlq-intro.mp3",
+          audioContext
+        );
+        const mainLoop = await loadAudio(
+          "../audio/ftlq-loop.mp3",
+          audioContext
+        );
         const introSource = audioContext.createBufferSource();
         introSource.buffer = introClip;
         introSource.connect(audioContext.destination);

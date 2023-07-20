@@ -45,10 +45,9 @@
         return audioBuffer;
       };
 
-      const introClip = loadAudio("../audio/ftlq-intro.mp3");
-      const mainLoop = loadAudio("../audio/ftlq-loop.mp3");
-
       const playIntroClip = async () => {
+        const introClip = await loadAudio("../audio/ftlq-intro.mp3");
+        const mainLoop = await loadAudio("../audio/ftlq-loop.mp3");
         const introSource = audioContext.createBufferSource();
         introSource.buffer = introClip;
         introSource.connect(audioContext.destination);
@@ -64,6 +63,14 @@
 
         introSource.start(0);
       };
+
+      (async () => {
+        await Promise.all([
+          loadAudio("../audio/ftlq-intro.mp3"),
+          loadAudio("../audio/ftlq-loop.mp3"),
+        ]);
+        playIntroClip();
+      })();
 
       const overlay = document.getElementById("click-overlay");
       const hideOverlay = function () {

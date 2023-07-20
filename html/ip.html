@@ -35,8 +35,6 @@
   <body>
     <div id="click-overlay">Click for calculator</div>
     <script>
-      const audioContext = new (window.AudioContext ||
-        window.webkitAudioContext)();
       let firstLoad = true;
 
       const loadAudio = async (url) => {
@@ -49,6 +47,8 @@
       const playIntroClip = async () => {
         if (!firstLoad) return;
         firstLoad = false;
+        const audioContext = new (window.AudioContext ||
+          window.webkitAudioContext)();
         const introClip = await loadAudio("../audio/ftlq-intro.mp3");
         const mainLoop = await loadAudio("../audio/ftlq-loop.mp3");
         const introSource = audioContext.createBufferSource();
@@ -72,7 +72,6 @@
           loadAudio("../audio/ftlq-intro.mp3"),
           loadAudio("../audio/ftlq-loop.mp3"),
         ]);
-        playIntroClip();
       })();
 
       const overlay = document.getElementById("click-overlay");

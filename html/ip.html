@@ -67,13 +67,6 @@
         introSource.start(0);
       };
 
-      (async () => {
-        await Promise.all([
-          loadAudio("../audio/ftlq-intro.mp3"),
-          loadAudio("../audio/ftlq-loop.mp3"),
-        ]);
-      })();
-
       const overlay = document.getElementById("click-overlay");
       const hideOverlay = function () {
         document.removeEventListener("click", hideOverlay);
